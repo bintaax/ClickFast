@@ -1,0 +1,55 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#main {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #A52B4C; /* Couleur verte */
+}
+
+.catchphrase {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+#counter {
+    font-size: 3em;
+    margin: 20px 0;
+    color: #FF5722; /* Couleur orange */
+}
+
+#clickButton {
+    padding: 15px 30px;
+    font-size: 1.5em;
+    background-color: #D84F6A; /* Couleur verte */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#clickButton:hover {
+    background-color: #8B2645; /* Couleur verte plus foncée au survol */
+}
+
+#timer {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
