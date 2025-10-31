@@ -1,29 +1,75 @@
- let count = 0;
-        let timeLeft = 5;
-        let timer;
+// Sélection des éléments HTML
+const button = document.getElementById('clickButton');
+const container = document.getElementById('container');
 
-        const counterDisplay = document.getElementById('counter');
-        const timeDisplay = document.getElementById('time');
-        const clickButton = document.getElementById('clickButton');
+// Création et ajout des éléments pour afficher le score et le chrono
+const scoreDisplay = document.createElement('p');
+scoreDisplay.textContent = "Score : 0";
+container.appendChild(scoreDisplay);
 
-        clickButton.addEventListener('click', () => {
-            if (timeLeft > 0) {
-                count++;
-                counterDisplay.textContent = count;
-            }
-        });
+const timerDisplay = document.createElement('p');
+timerDisplay.textContent = "Temps restant : 5s";
+container.appendChild(timerDisplay);
 
-        function startTimer() {
-            timer = setInterval(() => {
-                timeLeft--;
-                timeDisplay.textContent = timeLeft;
+// Création du bouton "Rejouer" (invisible au début)
+const replayButton = document.createElement('button');
+replayButton.textContent = "Rejouer";
+replayButton.style.display = "none";
+container.appendChild(replayButton);
 
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    clickButton.disabled = true; // Désactiver le bouton après 5 secondes
-                    alert("Temps écoulé ! Ton score est : " + count);
-                }
-            }, 1000);
-        }
+let score = 0;
+let timeLeft = 5;
+let timerStarted = false;
+let countdown;
 
-        startTimer(); // Démarrer le chrono
+// Fonction de gestion du clic sur le bouton principal
+button.addEventListener('click', () => {
+  // Démarre le chrono au premier clic
+  if (!timerStarted) {
+    timerStarted = true;
+    startTimer();
+  }
+
+  // Incrémente le score tant que le temps n'est pas écoulé
+  if (timeLeft > 0) {
+    score++;
+    scoreDisplay.textContent = "Score : " + score;
+  }
+});
+
+// Fonction de démarrage du chrono
+function startTimer() {
+  countdown = setInterval(() => {
+    timeLeft--;
+    timerDisplay.textContent = "Temps restant : " + timeLeft + "s";
+
+    if (timeLeft <= 0) {
+      clearInterval(countdown);
+      endGame();
+    }
+  }, 1000);
+}
+
+// Fonction appelée quand le temps est écoulé
+function endGame() {
+  button.disabled = true;
+  timerDisplay.textContent = "Temps écoulé !";
+  scoreDisplay.textContent = "Score final : " + score;
+  replayButton.style.display = "inline-block"; // Affiche le bouton "Rejouer"
+}
+
+// Fonction pour recommencer une partie
+replayButton.addEventListener('click', resetGame);
+
+function resetGame() {
+  // Réinitialisation des valeurs
+  score = 0;
+  timeLeft = 5;
+  timerStarted = false;
+
+  // Mise à jour de l'affichage
+  scoreDisplay.textContent = "Score : 0";
+  timerDisplay.textContent = "Temps restant : 5s";
+  button.disabled = false;
+  replayButton.style.display = "none";
+}
