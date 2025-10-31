@@ -30,6 +30,13 @@ button.addEventListener('click', () => {
     startTimer();
   }
 
+button.addEventListener('keydown', () => {
+    if(!timerStarted & "keydown" === 'Space') {
+        timerStarted =true;
+        startTimer();
+    }
+}  )
+
   // Incrémente le score tant que le temps n'est pas écoulé
   if (timeLeft > 0) {
     score++;
