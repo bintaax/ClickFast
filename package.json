@@ -4,15 +4,16 @@
   "description": "project to learn devops&docker",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx jest --env=jsdom"
   },
   "repository": {
-    "type": "git",
+    "type": "module",
     "url": "ClickFast"
   },
-  "author": "",
+  "author": "bintaax",
   "license": "ISC",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "jest-environment-jsdom": "^30.2.0"
   }
 }
